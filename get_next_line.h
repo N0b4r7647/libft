@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkomba <<marvin@42.fr> >                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 10:28:58 by gkomba            #+#    #+#             */
-/*   Updated: 2024/08/13 08:30:18 by gkomba           ###   ########.fr       */
+/*   Created: 2024/05/25 16:29:34 by gkomba            #+#    #+#             */
+/*   Updated: 2024/08/13 12:53:20 by gkomba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
-{
-	int		i;
-	char	*str;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	i = -1;
-	while (s[++i])
-		str[i] = f(i, s[i]);
-	str[i] = '\0';
-	return (str);
-}
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+
+char	*ft_string_dup(char *src);
+char	*get_next_line(int fd);
+void	s_v_i(int *vars);
+int		read_buffer(int fd, char *chr, int *buffer_size, int *buffer_pos);
+int		ft_get_len(char *str);
+
+#endif
